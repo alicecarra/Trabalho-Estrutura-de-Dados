@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1619285107 source:c:\users\vinic\documents\faculdade\estrutura de dados\trabalho\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<locale.h>
+	"TAD_AVL.h"
+	"TAD_TWEET.h"
+
+1619272118 source:c:\users\vinic\documents\faculdade\estrutura de dados\trabalho\tad_avl.c
+
+1619285107 source:c:\users\vinic\documents\faculdade\estrutura de dados\trabalho\tad_tweet.c
+	"TAD_TWEET.h"
+
+1619285106 c:\users\vinic\documents\faculdade\estrutura de dados\trabalho\tad_tweet.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1619285106 c:\users\vinic\documents\faculdade\estrutura de dados\trabalho\tad_avl.h
+	<stdio.h>
+	<stdlib.h>
+	"TAD_TWEET.h"
+
