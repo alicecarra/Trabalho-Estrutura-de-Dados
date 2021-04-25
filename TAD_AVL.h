@@ -6,17 +6,26 @@
 #include "TAD_TWEET.h"
 
 typedef struct AVL_Nodo{
-    char* palavra;
-    idTweets* idl;
-    struct AVL_Nodo* esq;
-    struct AVL_Nodo* dir;
+    char*               palavra;
+    idTweets*           idl;
+    struct AVL_Nodo*    esq;
+    struct AVL_Nodo*    dir;
+    int                 altura;
 }avlNodo;
 
-void initAVL(avlNodo**);
-avlNodo* initNodoAVL(avlNodo* a, char* palavra);
-void insereNodoAVL(avlNodo* a, char* palavra, int id);
-int alturaNodoAVL(avlNodo *a);
-int fatorNodoAVL(avlNodo *a);
+int         nodosCriadosAVL;
+int         nRotAVL;
+
+void        initAVL(avlNodo**);
+avlNodo*    initNodoAVL(char* palavra, int id);
+void        buscaNodoAVL(avlNodo *a, char* palavra);
+avlNodo*    insereNodoAVL(avlNodo* a, char* palavra, int id);
+int         alturaNodoAVL(avlNodo *a);
+int         fatorNodoAVL(avlNodo *a);
+void        imprimeAVL(avlNodo* a, int nivel);
+avlNodo*    rotDirAVL(avlNodo *nodo);
+avlNodo*    rotEsqAVL(avlNodo *nodo);
+
 //void impremeArvore(Nodo* a, int nivel);
 
 #endif // TAD_AVL_H_INCLUDED

@@ -7,6 +7,11 @@ void stringToLower(char *s)
         s[i]=tolower(s[i]);
 }
 
+int funcMax(int x, int y)
+{
+    return (x > y)? x : y;
+}
+
 void initIDL(idTweets **id)
 {
     *id = NULL;
@@ -25,20 +30,12 @@ idTweets* ptAux;
 	}
 }
 
-void insereIDL(idTweets** lista, int id)
+idTweets* insereIDL(idTweets* lista, int id)
 {
-	idTweets *pA, *novo;
-	novo = malloc(sizeof(idTweets));
+	idTweets *novo = (idTweets*) malloc(sizeof(idTweets));
 
 	novo->id = id;
-	novo->prox = NULL;
+	novo->prox = lista;
 
-	if(*lista == NULL){
-        *lista = novo;
-
-        return;
-	}
-
-    for(pA=*lista; pA->prox != NULL; pA=pA->prox);
-    pA->prox = novo;
+    return novo;
 }

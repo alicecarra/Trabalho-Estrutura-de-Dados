@@ -10,12 +10,13 @@ typedef struct LISTA_Tweets{
     struct LISTA_Tweets* prox;
 }idTweets;
 
-void stringToLower(char *s);
+void        stringToLower(char *s);
+int         funcMax(int x, int y);
 
 /* ==== FUNÇÕES PARA TRATAMENTO DA LISTA DE IDs === */
-void initIDL(idTweets**);
-void imprimeIDL(idTweets*);
-void insereIDL(idTweets**, int);
+void        initIDL(idTweets**);
+void        imprimeIDL(idTweets*);
+idTweets*   insereIDL(idTweets*, int);
 
 
 #endif // TAD_TWEET_H_INCLUDED
