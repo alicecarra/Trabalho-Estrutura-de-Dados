@@ -4,6 +4,7 @@
 #include <locale.h>
 #include "TAD_AVL.h"
 #include "TAD_TWEET.h"
+#include "RubroNegras.h"
 
 
 int main (int argc, char *argv[])
@@ -15,7 +16,10 @@ int main (int argc, char *argv[])
     char    separador[] = {" 0123456789,.&*%\?!;/-'@\"$#=~><()][}{:\n\t_"}; //caracteres separadores para as palavras
     int     id_num;
     avlNodo *raizAVL;
+    rbt* raizRN = (rbt*)malloc(sizeof(rbt));
+    raizRN->root = NULL;
 
+    printf("a");
     /*if (argc!=4)                                                       //testa se o numero de parametros esperado está correto
     {
         printf ("Número incorreto de parametros.\n Para chamar o programa digite: %s <aqrq_base> <arq_entrada> <arq_saida>\n",argv[0]);
@@ -28,7 +32,7 @@ int main (int argc, char *argv[])
         printf("erro ao abrir arquivo base %s \n", argv[1]);
         return 1;
     }
-    if ((entrada = fopen("c:/consulta_100.txt", "r")) == NULL)                           // testa se consegue abrir o arquivo de entrada
+    /*if ((entrada = fopen("c:/consulta_100.txt", "r")) == NULL)                           // testa se consegue abrir o arquivo de entrada
     {
         printf("erro ao abrir arquivo de entrada %s \n", argv[2]);
         return 1;
@@ -38,7 +42,7 @@ int main (int argc, char *argv[])
     {
         printf("erro ao criar arquivo de saida %s \n", argv[3]);
         return 1;
-    }
+    }*/
 
     initAVL(&raizAVL);                                                 // Inicialização da árvore AVL
     nodosCriadosAVL = 0;
@@ -46,7 +50,7 @@ int main (int argc, char *argv[])
 
 
     // Montando a estrutura de dados
-    while (fgets(linha, 1000, base))                                    //lê cada linha da base de dados
+    /*while (fgets(linha, 1000, base))                                    //lê cada linha da base de dados
     {
         id = strtok (linha, ";");                                       //pega o id do tweet
         id_num = atoi(id);                                              //converte o id para numérico
@@ -57,18 +61,20 @@ int main (int argc, char *argv[])
         {
             stringToLower(palavra);                                     //converte a palavra para minusculo
             raizAVL = insereNodoAVL(raizAVL, palavra, id_num);                    //grava a palavra no arquivo de saída
+            rbInserir(raizRN, palavra, id_num);
             palavra = strtok(NULL, separador);                          //pega a próxima palavra do tweet
         }
-    }
+    }*/
+    //rbInserir(raizRN, "teste", 10);
 
-
-    buscaNodoAVL(raizAVL, "teste");
+    //buscaNodoAVL(raizAVL, "teste");
+    //rbFind(raizRN, "teste");
 
 
 
     fclose(base);                                                     //fecha os arquivos
-    fclose(entrada);
-    fclose(saida);
+    //fclose(entrada);
+    //fclose(saida);
 
     return 0;
 }

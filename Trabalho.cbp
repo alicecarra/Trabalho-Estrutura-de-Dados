@@ -31,6 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="RubroNegras.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="RubroNegras.h" />
 		<Unit filename="TAD_AVL.c">
 			<Option compilerVar="CC" />
 		</Unit>

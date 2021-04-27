@@ -46,3 +46,38 @@
 1619369015 source:c:\users\vinic\documents\github\trabalho-estrutura-de-dados\tad_avl.c
 	"TAD_AVL.h"
 
+1619548963 source:c:\users\victf\documents\github\trabalho-estrutura-de-dados\tad_avl.c
+	"TAD_AVL.h"
+
+1619548963 c:\users\victf\documents\github\trabalho-estrutura-de-dados\tad_avl.h
+	<stdio.h>
+	<stdlib.h>
+	"TAD_TWEET.h"
+
+1619548963 c:\users\victf\documents\github\trabalho-estrutura-de-dados\tad_tweet.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1619548963 source:c:\users\victf\documents\github\trabalho-estrutura-de-dados\tad_tweet.c
+	"TAD_TWEET.h"
+
+1619551307 source:c:\users\victf\documents\github\trabalho-estrutura-de-dados\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<locale.h>
+	"TAD_AVL.h"
+	"TAD_TWEET.h"
+	"RubroNegras.h"
+
+1619550852 c:\users\victf\documents\github\trabalho-estrutura-de-dados\rubronegras.h
+	"TAD_TWEET.h"
+
+1619551176 source:c:\users\victf\documents\github\trabalho-estrutura-de-dados\rubronegras.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"RubroNegras.h"
+	"TAD_TWEET.h"
+
