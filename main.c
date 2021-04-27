@@ -62,7 +62,7 @@ int main (int argc, char *argv[])
     }
 
 
-    buscaNodoAVL(raizAVL, "teste");
+    buscaNodoAVL(raizAVL, "voce");
 
 
 

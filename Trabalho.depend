@@ -22,7 +22,7 @@
 	<stdlib.h>
 	"TAD_TWEET.h"
 
-1619366208 source:c:\users\vinic\documents\github\trabalho-estrutura-de-dados\main.c
+1619488021 source:c:\users\vinic\documents\github\trabalho-estrutura-de-dados\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -43,6 +43,6 @@
 1619359526 source:c:\users\vinic\documents\github\trabalho-estrutura-de-dados\tad_tweet.c
 	"TAD_TWEET.h"
 
-1619369015 source:c:\users\vinic\documents\github\trabalho-estrutura-de-dados\tad_avl.c
+1619487884 source:c:\users\vinic\documents\github\trabalho-estrutura-de-dados\tad_avl.c
 	"TAD_AVL.h"
 
