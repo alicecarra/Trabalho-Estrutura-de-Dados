@@ -121,12 +121,12 @@ void imprimeAVL(avlNodo* a, int nivel)
 
         imprimeAVL(a->esq, nivel+1);
         imprimeAVL(a->dir, nivel+1);
-    }
+    }/*
     else{
         for (i= 0; i<nivel; i++)
             printf("=");
         printf("[]\n");
-    }
+    }*/
 }
 
 //  ================= FUNÇÕES DE ROTAÇÃO =================  //
