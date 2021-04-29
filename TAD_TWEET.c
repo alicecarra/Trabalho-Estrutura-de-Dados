@@ -19,10 +19,10 @@ void initIDL(idTweets **id)
 
 void imprimeIDL(idTweets* lista, FILE **saida)
 {
-idTweets* ptAux;
+    //idTweets* ptAux;
 	if(lista != NULL){
-		for(ptAux=lista; ptAux!=NULL; ptAux=ptAux->prox)
-            fprintf(*saida, "%d, ", ptAux->id);
+        imprimeIDL(lista->prox, saida);
+        fprintf(*saida, "%d, ", lista->id);
 	}
 }
 
