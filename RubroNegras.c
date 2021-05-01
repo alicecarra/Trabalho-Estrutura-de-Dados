@@ -9,6 +9,8 @@ rbt* rbInitialize()
 {
     rbt *n = malloc(sizeof(rbt));
     n->root = NULL;
+    n->nodes = 0;
+    n->rotations = 0;
     return n;
 }
 
@@ -73,6 +75,7 @@ void rEsquerda(rbNode* node, rbt* tree)
 
 void rotacaoDireita(rbNode* node, rbt* tree)
 {
+    tree->rotations += 1;
     node->a->color = 0;
     node->a->a->color = 1;
     rDireita(node->a, tree);
@@ -80,6 +83,7 @@ void rotacaoDireita(rbNode* node, rbt* tree)
 
 void rotacaoEsquerda(rbNode* node, rbt* tree)
 {
+    tree->rotations += 1;
     node->a->color = 0;
     node->a->a->color = 1;
     rEsquerda(node->a, tree);
@@ -87,6 +91,7 @@ void rotacaoEsquerda(rbNode* node, rbt* tree)
 
 void rotacaoDuplaDireita(rbNode* node, rbt* tree)
 {
+    tree->rotations += 1;
     node->color = 0;
     node->a->a->color = 1;
     rEsquerda(node, tree);
@@ -95,6 +100,7 @@ void rotacaoDuplaDireita(rbNode* node, rbt* tree)
 
 void rotacaoDuplaEsquerda(rbNode* node, rbt* tree)
 {
+    tree->rotations += 1;
     node->color = 0;
     node->a->a->color = 1;
     rDireita(node, tree);
@@ -103,7 +109,7 @@ void rotacaoDuplaEsquerda(rbNode* node, rbt* tree)
 
 void arrumarArvore(rbNode* node, rbt* tree)
 {
-    if (node != NULL && node->a != NULL && node->a->a != NULL && node->color == 1)
+    if (node != NULL && node->a != NULL && node->a->a != NULL && node->color == 1 /*&& node->a->color == 1*/)
     {
         //////////////
         //char pal[30];
@@ -220,7 +226,10 @@ void rbInserir(rbt* tree, char *word, int tweetId)
 {
     rbNode* start = rbInsert(tree->root, tree, NULL, word, tweetId, 0);
     if (start != NULL)
+    {
         arrumarArvore(start, tree);
+        tree->nodes += 1;
+    }
 }
 
 void peRec(rbNode* node)
@@ -255,7 +264,7 @@ rbNode* rbFind(rbt* tree, char *word)
     if (node != NULL)
     {
         printf("%s : ", node->word);
-        imprimeIDL(node->ids);
+        imprimeIDL(node->ids, stdout);
     }
     return node;
 }

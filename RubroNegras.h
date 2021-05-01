@@ -15,6 +15,8 @@ typedef struct _rbNode
 typedef struct _rbt
 {
     rbNode* root;
+    int nodes;
+    int rotations;
 } rbt;
 
 

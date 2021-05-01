@@ -16,7 +16,7 @@ int main (int argc, char *argv[])
     char    separador[] = {" 0123456789,.&*%\?!;/-'@\"$#=~><()][}{:\n\t_"}; //caracteres separadores para as palavras
     int     id_num, select;
     avlNodo *raizAVL;
-    rbt* raizRN = rbInitialize();
+    rbt* arvoreRN = rbInitialize();
 
     /*if (argc!=4)                                                       //testa se o numero de parametros esperado está correto
     {
@@ -66,7 +66,7 @@ int main (int argc, char *argv[])
             if(select == 1)
                 raizAVL = insereNodoAVL(raizAVL, palavra, id_num);      //Insere a palavra em AVL caso selecionada
             else
-                rbInserir(raizRN, palavra, id_num);                     //Insere a palavra em ARN caso selecionada
+                rbInserir(arvoreRN, palavra, id_num);                     //Insere a palavra em ARN caso selecionada
             palavra = strtok(NULL, separador);                          //pega a próxima palavra do tweet
         }
     }
@@ -86,12 +86,13 @@ int main (int argc, char *argv[])
         fprintf(saida, "Comparações = %d\n", nodosCriadosAVL);      // TODO
         fprintf(saida, "Rotações = %d\n", nRotAVL);
         fprintf(saida, "Altura da árvore = %d\n", raizAVL->altura);
-    } else{/*           TODO
-        puts("\n********** Estatísticas da Indexação ARN ***********\n");
-        printf("Nodos = %d\n", );
-        printf("Comparações = %d\n", );
-        printf("Rotações = %d\n", );
-        printf("Altura da árvore = %d\n", );*/
+        }
+        else{
+        fprintf(saida, "\n********** Estatísticas da Indexação ARN ***********\n");
+        fprintf(saida, "Nodos = %d\n", arvoreRN->nodes);
+        //fprintf(saida, "Comparações = %d\n", );
+        fprintf(saida, "Rotações = %d\n", arvoreRN->rotations);
+        //fprintf(saida, "Altura da árvore = %d\n", arvoreRN->height);
      }
 
 
