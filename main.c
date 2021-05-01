@@ -16,8 +16,7 @@ int main (int argc, char *argv[])
     char    separador[] = {" 0123456789,.&*%\?!;/-'@\"$#=~><()][}{:\n\t_"}; //caracteres separadores para as palavras
     int     id_num, select;
     avlNodo *raizAVL;
-    rbt* raizRN = (rbt*)malloc(sizeof(rbt));
-    raizRN->root = NULL;
+    rbt* raizRN = rbInitialize();
 
     /*if (argc!=4)                                                       //testa se o numero de parametros esperado está correto
     {
