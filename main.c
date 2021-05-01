@@ -16,10 +16,10 @@ int main (int argc, char *argv[])
     char    separador[] = {" 0123456789,.&*%\?!;/-'@\"$#=~><()][}{:\n\t_"}; //caracteres separadores para as palavras
     int     id_num;
     avlNodo *raizAVL;
-    rbt* raizRN = (rbt*)malloc(sizeof(rbt));
-    raizRN->root = NULL;
+    rbt* raizRN = rbInitialize();
 
-    printf("a");
+    //rbInserir(raizRN, "teste", 1);
+
     /*if (argc!=4)                                                       //testa se o numero de parametros esperado está correto
     {
         printf ("Número incorreto de parametros.\n Para chamar o programa digite: %s <aqrq_base> <arq_entrada> <arq_saida>\n",argv[0]);
@@ -50,7 +50,7 @@ int main (int argc, char *argv[])
 
 
     // Montando a estrutura de dados
-    /*while (fgets(linha, 1000, base))                                    //lê cada linha da base de dados
+    while (fgets(linha, 1000, base))                                    //lê cada linha da base de dados
     {
         id = strtok (linha, ";");                                       //pega o id do tweet
         id_num = atoi(id);                                              //converte o id para numérico
@@ -60,15 +60,14 @@ int main (int argc, char *argv[])
         while (palavra != NULL)                                         //enquanto encontrar palavras no tweet
         {
             stringToLower(palavra);                                     //converte a palavra para minusculo
-            raizAVL = insereNodoAVL(raizAVL, palavra, id_num);                    //grava a palavra no arquivo de saída
+            //raizAVL = insereNodoAVL(raizAVL, palavra, id_num);                    //grava a palavra no arquivo de saída
             rbInserir(raizRN, palavra, id_num);
             palavra = strtok(NULL, separador);                          //pega a próxima palavra do tweet
         }
-    }*/
-    //rbInserir(raizRN, "teste", 10);
+    }
 
     //buscaNodoAVL(raizAVL, "teste");
-    //rbFind(raizRN, "teste");
+    rbFind(raizRN, "eu");
 
 
 

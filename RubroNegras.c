@@ -115,7 +115,7 @@ void arrumarArvore(rbNode* node, rbt* tree)
         {
             if (avo->r != pai)//Pai é filho esquerdo do avô
             {
-                if (avo->r != NULL && avo->r->color == 1)//Caso 2.1, tio é vermelho
+                if (avo->r != NULL)//Caso 2.1, tio é vermelho
                 {
                     pai->color = 0;
                     avo->r->color = 0;
@@ -138,7 +138,7 @@ void arrumarArvore(rbNode* node, rbt* tree)
 
             else//Pai é filho direito do avô
             {
-                if (avo->l != NULL && avo->l->color == 1)//Caso 2.1, tio é vermelho
+                if (avo->l != NULL)//Caso 2.1, tio é vermelho
                 {
                     pai->color = 0;
                     avo->l->color = 0;
@@ -182,7 +182,7 @@ rbNode* rbInsert(rbNode* root, rbt* tree, rbNode* a, char *word, int tweetId, ch
     if (root == NULL)
     {
         rbNode* node = createNode();
-        strcpy(node->word, word);
+        node->word = strdup(word);
         node->ids = insereIDL(node->ids, tweetId);
         node->a = a;
         if (a == NULL)
@@ -250,5 +250,11 @@ rbNode* findRecursive(rbNode* node, char *word)
 
 rbNode* rbFind(rbt* tree, char *word)
 {
-    return findRecursive(tree->root, word);
+    rbNode* node = findRecursive(tree->root, word);
+    if (node != NULL)
+    {
+        printf("%s : ", node->word);
+        imprimeIDL(node->ids);
+    }
+    return node;
 }
