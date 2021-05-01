@@ -17,16 +17,12 @@ void initIDL(idTweets **id)
     *id = NULL;
 }
 
-void imprimeIDL(idTweets* lista)
+void imprimeIDL(idTweets* lista, FILE **saida)
 {
-idTweets* ptAux;
-	if(lista == NULL) // Checa se a lista está vazia
-		puts("Lista IDs vazia.");
-	else{
-        printf("IDs: ");
-		for(ptAux=lista; ptAux!=NULL; ptAux=ptAux->prox){
-			printf("%d  ", ptAux->id);
-		}
+    //idTweets* ptAux;
+	if(lista != NULL){
+        imprimeIDL(lista->prox, saida);
+        fprintf(*saida, "%d, ", lista->id);
 	}
 }
 

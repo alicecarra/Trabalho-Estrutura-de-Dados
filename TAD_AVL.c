@@ -20,19 +20,20 @@ avlNodo* initNodoAVL(char* palavra, int id)
     return nodo;
 }
 
-void buscaNodoAVL(avlNodo *a, char* palavra)
+void buscaNodoAVL(avlNodo *a, char* palavra, FILE **saida)
 {
     if(a == NULL)
-            printf("\n%s - Palavra não encontrada", palavra);
+            fprintf(*saida, "Consulta: %s - Palavra nÃ£o encontrada\n", palavra);
     else{
        if (strcmp(a->palavra, palavra) > 0)
-        buscaNodoAVL(a->esq, palavra);
+        buscaNodoAVL(a->esq, palavra, saida);
         else if (strcmp(a->palavra, palavra) < 0)
-        buscaNodoAVL(a->dir, palavra);
+        buscaNodoAVL(a->dir, palavra, saida);
 
         else{
-            printf("\n%s -  ", palavra);
-            imprimeIDL(a->idl);
+            fprintf(*saida, "Consulta: %s - palavra encontrada nos tweets ", palavra);
+            imprimeIDL(a->idl, saida);
+            fprintf(*saida, "\n");
         }
     }
 
@@ -55,12 +56,12 @@ int fatorNodoAVL(avlNodo *a)
 
 avlNodo* insereNodoAVL(avlNodo* nodo, char* palavra, int id)
 {
-    // Caso a árvore não estiver populada, insere na raiz
+    // Caso a Ã¡rvore nÃ£o estiver populada, insere na raiz
     if (nodo == NULL)
         return(initNodoAVL(palavra, id));
 
-    // strcmp(,) retorna valor negativo caso a ordem lexicográfica do primeiro parametro
-    //   for menor do que o do segundo. Assim podemos ordenar a árvore em ordem alfabética
+    // strcmp(,) retorna valor negativo caso a ordem lexicogrÃ¡fica do primeiro parametro
+    //   for menor do que o do segundo. Assim podemos ordenar a Ã¡rvore em ordem alfabÃ©tica
 
     if (strcmp(nodo->palavra, palavra) > 0)
         nodo->esq  = insereNodoAVL(nodo->esq, palavra, id);
@@ -75,37 +76,37 @@ avlNodo* insereNodoAVL(avlNodo* nodo, char* palavra, int id)
     }
 
 
-    //Agora é necessário atualizar a altura e calcular o fator de balanceamento
+    //Agora Ã© necessÃ¡rio atualizar a altura e calcular o fator de balanceamento
     nodo->altura = 1 + (funcMax(alturaNodoAVL(nodo->esq), alturaNodoAVL(nodo->dir)));
     int fatorBalanceamento = fatorNodoAVL(nodo);
 
 
-    // Se o nodo estiver desbalanceado, então são 4 casos
+    // Se o nodo estiver desbalanceado, entÃ£o sÃ£o 4 casos
 
-    // Rotação à direita
+    // RotaÃ§Ã£o Ã  direita
     if (fatorBalanceamento > 1 && fatorNodoAVL(nodo->esq) > 0)
         return rotDirAVL(nodo);
 
 
-    // Rotação à esquerda
+    // RotaÃ§Ã£o Ã  esquerda
     if (fatorBalanceamento < -1 && fatorNodoAVL(nodo->dir) < 0)
         return rotEsqAVL(nodo);
 
-    // Rotação dupla à esquerda
+    // RotaÃ§Ã£o dupla Ã  esquerda
     if (fatorBalanceamento < -1 && fatorNodoAVL(nodo->dir) > 0)
     {
         nodo->dir = rotDirAVL(nodo->dir);
         return rotEsqAVL(nodo);
     }
 
-    // Rotação dupla à direita
+    // RotaÃ§Ã£o dupla Ã  direita
     if (fatorBalanceamento > 1 && fatorNodoAVL(nodo->esq) < 0)
     {
         nodo->esq =  rotEsqAVL(nodo->esq);
         return rotDirAVL(nodo);
     }
 
-    // se o fator estiver entre -1 e 1, a árvore está balanceada
+    // se o fator estiver entre -1 e 1, a Ã¡rvore estÃ¡ balanceada
     return nodo;
 }
 
@@ -129,11 +130,11 @@ void imprimeAVL(avlNodo* a, int nivel)
     }*/
 }
 
-//  ================= FUNÇÕES DE ROTAÇÃO =================  //
+//  ================= FUNÃ‡Ã•ES DE ROTAÃ‡ÃƒO =================  //
 
 avlNodo* rotDirAVL(avlNodo *nodo)
 {
-/*      nodo      u         ;ROTAÇÃO À DIREITA
+/*      nodo      u         ;ROTAÃ‡ÃƒO Ã€ DIREITA
         / \  ->  / \
        u  t2    t1 nodo     ;Nodos envolvidos: nodo, u e v
       / \          /  \     ;  os outros permanecem iguais
@@ -146,7 +147,7 @@ avlNodo* rotDirAVL(avlNodo *nodo)
     u->dir      = nodo;
     nodo->esq   = v;
 
-    //Atualização das alturas do nodo original e u
+    //AtualizaÃ§Ã£o das alturas do nodo original e u
     nodo->altura = funcMax(alturaNodoAVL(nodo->esq), alturaNodoAVL(nodo->dir))   +1;
     u->altura    = funcMax(alturaNodoAVL(u->esq)   , alturaNodoAVL(u->dir))      +1;
 
@@ -157,7 +158,7 @@ avlNodo* rotDirAVL(avlNodo *nodo)
 
 avlNodo* rotEsqAVL(avlNodo *nodo)
 {
-/*  nodo          u         ;ROTAÇÃO À ESQUERDA
+/*  nodo          u         ;ROTAÃ‡ÃƒO Ã€ ESQUERDA
     / \   ->     / \
    t1  u       nodo t2      ;Nodos envolvidos: nodo, u e v
       / \      /  \         ;  os outros permanecem iguais
@@ -168,7 +169,7 @@ avlNodo* rotEsqAVL(avlNodo *nodo)
     u->esq      = nodo;
     nodo->dir   = v;
 
-    //Atualização das alturas do nodo original e u
+    //AtualizaÃ§Ã£o das alturas do nodo original e u
     nodo->altura = funcMax(alturaNodoAVL(nodo->esq), alturaNodoAVL(nodo->dir))   +1;
     u->altura    = funcMax(alturaNodoAVL(u->esq)   , alturaNodoAVL(u->dir))      +1;
 

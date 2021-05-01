@@ -18,7 +18,7 @@ int         nRotAVL;
 
 void        initAVL(avlNodo**);
 avlNodo*    initNodoAVL(char* palavra, int id);
-void        buscaNodoAVL(avlNodo *a, char* palavra);
+void        buscaNodoAVL(avlNodo *a, char* palavra, FILE **saida);
 avlNodo*    insereNodoAVL(avlNodo* a, char* palavra, int id);
 int         alturaNodoAVL(avlNodo *a);
 int         fatorNodoAVL(avlNodo *a);

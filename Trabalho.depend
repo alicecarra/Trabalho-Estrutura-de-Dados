@@ -22,28 +22,29 @@
 	<stdlib.h>
 	"TAD_TWEET.h"
 
-1619488021 source:c:\users\vinic\documents\github\trabalho-estrutura-de-dados\main.c
+1619724800 source:c:\users\vinic\documents\github\trabalho-estrutura-de-dados\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<locale.h>
 	"TAD_AVL.h"
 	"TAD_TWEET.h"
+	"RubroNegras.h"
 
-1619369015 c:\users\vinic\documents\github\trabalho-estrutura-de-dados\tad_avl.h
+1619723909 c:\users\vinic\documents\github\trabalho-estrutura-de-dados\tad_avl.h
 	<stdio.h>
 	<stdlib.h>
 	"TAD_TWEET.h"
 
-1619359526 c:\users\vinic\documents\github\trabalho-estrutura-de-dados\tad_tweet.h
+1619724285 c:\users\vinic\documents\github\trabalho-estrutura-de-dados\tad_tweet.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 
-1619359526 source:c:\users\vinic\documents\github\trabalho-estrutura-de-dados\tad_tweet.c
+1619724394 source:c:\users\vinic\documents\github\trabalho-estrutura-de-dados\tad_tweet.c
 	"TAD_TWEET.h"
 
-1619487884 source:c:\users\vinic\documents\github\trabalho-estrutura-de-dados\tad_avl.c
+1619724286 source:c:\users\vinic\documents\github\trabalho-estrutura-de-dados\tad_avl.c
 	"TAD_AVL.h"
 
 1619551466 source:c:\users\victf\documents\github\trabalho-estrutura-de-dados\tad_avl.c
@@ -75,6 +76,16 @@
 	"TAD_TWEET.h"
 
 1619887808 source:c:\users\victf\documents\github\trabalho-estrutura-de-dados\rubronegras.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"RubroNegras.h"
+	"TAD_TWEET.h"
+
+1619551626 c:\users\vinic\documents\github\trabalho-estrutura-de-dados\rubronegras.h
+	"TAD_TWEET.h"
+
+1619552704 source:c:\users\vinic\documents\github\trabalho-estrutura-de-dados\rubronegras.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

@@ -13,9 +13,9 @@ typedef struct LISTA_Tweets{
 void        stringToLower(char *s);
 int         funcMax(int x, int y);
 
-/* ==== FUNÇÕES PARA TRATAMENTO DA LISTA DE IDs === */
+/* ==== FUNÃ‡Ã•ES PARA TRATAMENTO DA LISTA DE IDs === */
 void        initIDL(idTweets**);
-void        imprimeIDL(idTweets*);
+void        imprimeIDL(idTweets*, FILE **saida);
 idTweets*   insereIDL(idTweets*, int);
 
 

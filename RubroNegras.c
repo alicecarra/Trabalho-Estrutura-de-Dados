@@ -185,6 +185,7 @@ rbNode* rbInsert(rbNode* root, rbt* tree, rbNode* a, char *word, int tweetId, ch
         node->word = strdup(word);
         node->ids = insereIDL(node->ids, tweetId);
         node->a = a;
+        node->word = strdup(word);
         if (a == NULL)
         {
             tree->root = node;
