@@ -91,7 +91,7 @@ void rotacaoEsquerda(rbNode* node, rbt* tree)
 
 void rotacaoDuplaDireita(rbNode* node, rbt* tree)
 {
-    tree->rotations += 1;
+    tree->rotations += 2;
     node->color = 0;
     node->a->a->color = 1;
     rEsquerda(node, tree);
@@ -100,7 +100,7 @@ void rotacaoDuplaDireita(rbNode* node, rbt* tree)
 
 void rotacaoDuplaEsquerda(rbNode* node, rbt* tree)
 {
-    tree->rotations += 1;
+    tree->rotations += 2;
     node->color = 0;
     node->a->a->color = 1;
     rDireita(node, tree);

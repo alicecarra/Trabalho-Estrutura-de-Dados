@@ -1,4 +1,4 @@
 
 ********** Estatísticas da Indexação ARN ***********
 Nodos = 174346
-Rotações = 50373
+Rotações = 75509
