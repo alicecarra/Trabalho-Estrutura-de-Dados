@@ -19,19 +19,37 @@ void initIDL(idTweets **id)
 
 void imprimeIDL(idTweets* lista, FILE **saida)
 {
-    //idTweets* ptAux;
-	if(lista != NULL){
-        imprimeIDL(lista->prox, saida);
-        fprintf(*saida, "%d, ", lista->id);
-	}
+    //return;
+    idTweets* aux;
+    for(aux = lista->ant ; aux != lista; aux = aux->ant)
+        fprintf(*saida, "%d, ", aux->id);
+
 }
 
 idTweets* insereIDL(idTweets* lista, int id)
 {
+    idTweets* aux;
+    //printf("%d  --> ", id);
 	idTweets *novo = (idTweets*) malloc(sizeof(idTweets));
 
-	novo->id = id;
-	novo->prox = lista;
+    novo->id = id;
+
+	if(lista == NULL){
+        novo->prox  = novo;
+        novo->ant   = novo;
+	}
+	else{
+        aux = lista->ant;
+
+        novo->prox          = lista;
+        lista->ant          = novo;
+        novo->ant           = aux;
+        aux->prox           = novo;
+	}
+
+    //printf("%d | %d | %d\n", novo->ant->id, novo->id, novo->prox->id);
 
     return novo;
+
 }
+

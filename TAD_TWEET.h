@@ -8,6 +8,8 @@
 typedef struct LISTA_Tweets{
     int id;
     struct LISTA_Tweets* prox;
+    struct LISTA_Tweets* ant;
+
 }idTweets;
 
 void        stringToLower(char *s);

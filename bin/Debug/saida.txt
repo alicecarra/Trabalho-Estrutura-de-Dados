@@ -1,0 +1,7 @@
+Consulta: granada - palavra encontrada nos tweets 110112, 155336, 236436, 313360, 406109, 411952, 504019, 505501, 571618, 715009, 765860, 815079, 816848, 859002, 859545, 
+
+********** Estatísticas da Indexação AVL ***********
+Nodos = 174346
+Comparações = 174346
+Rotações = 123929
+Altura da árvore = 21
