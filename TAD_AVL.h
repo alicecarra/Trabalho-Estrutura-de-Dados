@@ -15,6 +15,9 @@ typedef struct AVL_Nodo{
 
 int         nodosCriadosAVL;
 int         nRotAVL;
+int         comparacoesAVL;
+int         compara;
+int         comparacoesBuscaAVL;
 
 void        initAVL(avlNodo**);
 avlNodo*    initNodoAVL(char* palavra, int id);

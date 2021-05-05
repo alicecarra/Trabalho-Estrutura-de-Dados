@@ -46,6 +46,7 @@ int main (int argc, char *argv[])
     initAVL(&raizAVL);                                                 // Inicialização da árvore AVL
     nodosCriadosAVL = 0;
     nRotAVL = 0;
+    comparacoesAVL = 0;
 
     do{
         printf("Insira  1  para AVL ou  2  para ARN: ");
@@ -71,6 +72,7 @@ int main (int argc, char *argv[])
         }
     }
 
+    comparacoesBuscaAVL = 0;
     while (fgets(linha, 1000, entrada))                                    //lê cada linha da base de dados
     {
         linha[strlen(linha)-1] = '\0';
@@ -83,9 +85,11 @@ int main (int argc, char *argv[])
     if(select == 1){
         fprintf(saida, "\n********** Estatísticas da Indexação AVL ***********\n");
         fprintf(saida, "Nodos = %d\n", nodosCriadosAVL);
-        fprintf(saida, "Comparações = %d\n", nodosCriadosAVL);      // TODO
+        fprintf(saida, "Comparações = %d\n", comparacoesAVL);      // TODO
         fprintf(saida, "Rotações = %d\n", nRotAVL);
         fprintf(saida, "Altura da árvore = %d\n", raizAVL->altura);
+        fprintf(saida, "\n********** Estatísticas da Busca em AVL ***********\n");
+        fprintf(saida, "Comparações = %d\n", comparacoesBuscaAVL);
         }
         else{
         fprintf(saida, "\n********** Estatísticas da Indexação ARN ***********\n");

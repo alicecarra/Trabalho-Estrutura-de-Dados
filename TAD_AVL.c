@@ -23,15 +23,17 @@ avlNodo* initNodoAVL(char* palavra, int id)
 void buscaNodoAVL(avlNodo *a, char* palavra, FILE **saida)
 {
     if(a == NULL)
-            fprintf(*saida, "Consulta: %s - Palavra não encontrada\n", palavra);
+            fprintf(*saida, "consulta: %s Palavra não encontrada\n", palavra);
     else{
-       if (strcmp(a->palavra, palavra) > 0)
+        compara = strcmp(a->palavra, palavra);
+        comparacoesBuscaAVL += 1;
+       if (compara > 0)
         buscaNodoAVL(a->esq, palavra, saida);
-        else if (strcmp(a->palavra, palavra) < 0)
+        else if (compara < 0)
         buscaNodoAVL(a->dir, palavra, saida);
 
         else{
-            fprintf(*saida, "Consulta: %s - palavra encontrada nos tweets ", palavra);
+            fprintf(*saida, "consulta: %s Palavra encontrada nos tweets ", palavra);
             imprimeIDL(a->idl, saida);
             fprintf(*saida, "\n");
         }
@@ -56,18 +58,24 @@ int fatorNodoAVL(avlNodo *a)
 
 avlNodo* insereNodoAVL(avlNodo* nodo, char* palavra, int id)
 {
+
     // Caso a árvore não estiver populada, insere na raiz
     if (nodo == NULL)
         return(initNodoAVL(palavra, id));
 
+    compara = strcmp(nodo->palavra, palavra);
+    comparacoesAVL += 1;
+
     // strcmp(,) retorna valor negativo caso a ordem lexicográfica do primeiro parametro
     //   for menor do que o do segundo. Assim podemos ordenar a árvore em ordem alfabética
 
-    if (strcmp(nodo->palavra, palavra) > 0)
+    if (compara > 0){
         nodo->esq  = insereNodoAVL(nodo->esq, palavra, id);
+    }
 
-    else if (strcmp(nodo->palavra, palavra) < 0)
+    else if (compara < 0){
         nodo->dir  = insereNodoAVL(nodo->dir, palavra, id);
+    }
 
     else{ // Mesma palavra, acrescenta na lista de IDs caso tenha um id diferente
         if(nodo->idl->id != id)

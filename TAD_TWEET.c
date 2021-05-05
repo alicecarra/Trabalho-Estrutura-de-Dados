@@ -23,6 +23,7 @@ void imprimeIDL(idTweets* lista, FILE **saida)
     idTweets* aux;
     for(aux = lista->ant ; aux != lista; aux = aux->ant)
         fprintf(*saida, "%d, ", aux->id);
+    fprintf(*saida, "%d, ", aux->id);
 
 }
 
