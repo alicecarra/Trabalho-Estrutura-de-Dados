@@ -230,7 +230,8 @@ rbNode* rbInsert(rbNode* node, rbt* tree, rbNode* a, char* word, int tweetId, ch
         }
         else
         {
-            node->ids = insereIDL(node->ids, tweetId);
+            if (node->ids->id != tweetId)
+                node->ids = insereIDL(node->ids, tweetId);
         }
         return node;
     }
