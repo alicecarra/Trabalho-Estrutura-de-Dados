@@ -17,18 +17,18 @@ rbt* rbInitialize()
 
 void rDireita(rbNode* node, rbt* tree)
 {
-    rbNode* p = node->a;//Pai do nó
-    rbNode* avo = NULL;//Avô do nó
-    rbNode* r = node->r;//Filho direito do nó
+    rbNode* p = node->a;//Pai do nï¿½
+    rbNode* avo = NULL;//Avï¿½ do nï¿½
+    rbNode* r = node->r;//Filho direito do nï¿½
 
-    if (p->a != NULL)//Pai não é raiz
+    if (p->a != NULL)//Pai nï¿½o ï¿½ raiz
     {
         avo = p->a;
-        if (avo->r == p)//Pai é filho esquerdo
+        if (avo->r == p)//Pai ï¿½ filho esquerdo
         {
             avo->r = node;
         }
-        else//Pai é filho direito
+        else//Pai ï¿½ filho direito
         {
             avo->l = node;
         }
@@ -38,28 +38,28 @@ void rDireita(rbNode* node, rbt* tree)
         tree->root = node;
     }
 
-    node->a = avo;//Ancestral do nó vai ser seu avô antigo
-    node->r = p;//Filho direito no nó vai ser seu pai antigo
+    node->a = avo;//Ancestral do nï¿½ vai ser seu avï¿½ antigo
+    node->r = p;//Filho direito no nï¿½ vai ser seu pai antigo
     if (r != NULL)
-        r->a = p;//Ancestral do filho direito antigo do nó vai ser pai antigo do nó
+        r->a = p;//Ancestral do filho direito antigo do nï¿½ vai ser pai antigo do nï¿½
 
-    p->a = node;//Ancestral do pai antigo do nó vai ser o próprio nó
-    p->l = r;//Filho esquerdo do pai antigo do nó vai ser filho antigo direito do nó
+    p->a = node;//Ancestral do pai antigo do nï¿½ vai ser o prï¿½prio nï¿½
+    p->l = r;//Filho esquerdo do pai antigo do nï¿½ vai ser filho antigo direito do nï¿½
 }
 
 void rEsquerda(rbNode* node, rbt* tree)
 {
-    rbNode* p = node->a;//Pai do nó
-    rbNode* avo = NULL;//Avô do nó
-    rbNode* l = node->l;//Filho esquerdo do nó
-    if (p->a != NULL)//Pai não é raiz
+    rbNode* p = node->a;//Pai do nï¿½
+    rbNode* avo = NULL;//Avï¿½ do nï¿½
+    rbNode* l = node->l;//Filho esquerdo do nï¿½
+    if (p->a != NULL)//Pai nï¿½o ï¿½ raiz
     {
         avo = p->a;
-        if (avo->r == p)//Pai é filho direito
+        if (avo->r == p)//Pai ï¿½ filho direito
         {
             avo->r = node;
         }
-        else//Pai é filho esquerdo
+        else//Pai ï¿½ filho esquerdo
         {
             avo->l = node;
         }
@@ -69,13 +69,13 @@ void rEsquerda(rbNode* node, rbt* tree)
         tree->root = node;
     }
 
-    p->a = node;//Ancestral do pai antigo do nó vai ser o próprio nó
-    p->r = l;//Filho direito do pai antigo do nó vai ser filho antigo esquerdo do nó
+    p->a = node;//Ancestral do pai antigo do nï¿½ vai ser o prï¿½prio nï¿½
+    p->r = l;//Filho direito do pai antigo do nï¿½ vai ser filho antigo esquerdo do nï¿½
     if (l != NULL)
-        l->a = p;//Ancestral do filho esquerdo antigo do nó vai ser pai antigo do nó
+        l->a = p;//Ancestral do filho esquerdo antigo do nï¿½ vai ser pai antigo do nï¿½
 
-    node->a = avo;//Ancestral do nó vai ser seu avô antigo
-    node->l = p;//Filho esquerdo no nó vai ser seu pai antigo
+    node->a = avo;//Ancestral do nï¿½ vai ser seu avï¿½ antigo
+    node->l = p;//Filho esquerdo no nï¿½ vai ser seu pai antigo
 }
 
 void rotacaoDireita(rbNode* node, rbt* tree)
@@ -112,8 +112,8 @@ void arrumarArvore(rbNode* node, rbt* tree)
 {
     if (node != NULL && node->a != NULL && node->a->a != NULL)
     {
-        rbNode* p = node->a;//Pai do nó
-        rbNode* g = node->a->a;//Avô do nó
+        rbNode* p = node->a;//Pai do nï¿½
+        rbNode* g = node->a->a;//Avï¿½ do nï¿½
 
         ////////////////////// DEBUG
         /*
@@ -124,26 +124,26 @@ void arrumarArvore(rbNode* node, rbt* tree)
         //////////////////////
 
 
-        if (node->a->color == 1 && node->color == 1)//Pai é vermelho
+        if (node->a->color == 1 && node->color == 1)//Pai ï¿½ vermelho
         {
-            if (g->r != p)//Pai é filho esquerdo
+            if (g->r != p)//Pai ï¿½ filho esquerdo
             {
-                if (g->r != NULL && g->r->color == 1)//Tio é vermelho
+                if (g->r != NULL && g->r->color == 1)//Tio ï¿½ vermelho
                 {
                     p->color = 0;
                     g->r->color = 0;
-                    if (g->a != NULL)//Exceção se o avô for raiz
+                    if (g->a != NULL)//Exceï¿½ï¿½o se o avï¿½ for raiz
                         g->color = 1;
                 }
-                else//Tio é preto
+                else//Tio ï¿½ preto
                 {
-                    if (p->r != node)//Nó é filho esquerdo
+                    if (p->r != node)//Nï¿½ ï¿½ filho esquerdo
                     {
                         //printf("rotacao direita \n");////////////////// DEBUG
                         rotacaoDireita(node, tree);
                         tree->rotations += 1;
                     }
-                    else//Nó é filho direito
+                    else//Nï¿½ ï¿½ filho direito
                     {
                         //printf("rotacao dupla direita \n");////////////////// DEBUG
                         rotacaoDuplaDireita(node, tree);
@@ -151,25 +151,25 @@ void arrumarArvore(rbNode* node, rbt* tree)
                     }
                 }
             }
-            else//Pai é filho direito
+            else//Pai ï¿½ filho direito
             {
-                if (g->l != NULL && g->l->color == 1)//Tio é vermelho
+                if (g->l != NULL && g->l->color == 1)//Tio ï¿½ vermelho
                 {
                     //printf("muda cor \n");////////////////// DEBUG
                     p->color = 0;
                     g->l->color = 0;
-                    if (g->a != NULL)//Exceção se o avô for raiz
+                    if (g->a != NULL)//Exceï¿½ï¿½o se o avï¿½ for raiz
                         g->color = 1;
                 }
-                else//Tio é preto
+                else//Tio ï¿½ preto
                 {
-                    if (p->r != node)//Nó é filho esquerdo
+                    if (p->r != node)//Nï¿½ ï¿½ filho esquerdo
                     {
                         //printf("rotacao dupla esquerda \n");////////////////// DEBUG
                         rotacaoDuplaEsquerda(node, tree);
                         tree->rotations += 2;
                     }
-                    else//Nó é filho direito
+                    else//Nï¿½ ï¿½ filho direito
                     {
                         //printf("rotacao esquerda \n");////////////////// DEBUG
                         rotacaoEsquerda(node, tree);
@@ -230,7 +230,7 @@ rbNode* rbInsert(rbNode* node, rbt* tree, rbNode* a, char* word, int tweetId, ch
         }
         else
         {
-            if(node->ids->id != tweetId)
+            if (node->ids->id != tweetId)
                 node->ids = insereIDL(node->ids, tweetId);
         }
         return node;
@@ -316,6 +316,6 @@ void rbPrintIds(rbt* tree, char *word, FILE **saida)
     }
     else
     {
-        fprintf(*saida, "consulta: %s Palavra não encontrada\n", word);
+        fprintf(*saida, "consulta: %s Palavra nï¿½o encontrada\n", word);
     }
 }
