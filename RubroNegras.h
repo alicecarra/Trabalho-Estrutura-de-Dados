@@ -27,9 +27,9 @@ rbt* rbInitialize();//Inicializa a rubro-negra
 
 void rbInserir(rbt* tree, char *word, int tweetId);//Insere un nodo na rubro-negra
 void rbPreEsq(rbt* tree);//Imprime a rubro-negra com caminhamento pré-fixado a esquerda
-rbNode* rbFind(rbt* tree, char *word, int* comps);//Retorna o nó que contem a palavra na rubro-negra
+rbNode* rbFind(rbt* tree, char *word);//Retorna o nó que contem a palavra na rubro-negra
 int rbHeight(rbt* tree);//Retorna a altura da rubro-negra
-void rbPrintIds(rbt* tree, char *word, int *comps, FILE **saida);//Imprime os ids dos tweets que contêm a palabra buscada
+void rbPrintIds(rbt* tree, char *word, FILE **saida);//Imprime os ids dos tweets que contêm a palabra buscada
 
 
 #endif // RUBRONEGRAS_H_INCLUDED

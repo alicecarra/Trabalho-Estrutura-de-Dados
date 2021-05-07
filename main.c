@@ -17,6 +17,7 @@ int main (int argc, char *argv[])
     int     id_num, select;
     avlNodo *raizAVL;
     rbt* arvoreRN = rbInitialize();
+    rbSearchComp = 0;
 
     /*if (argc!=4)                                                       //testa se o numero de parametros esperado está correto
     {
@@ -47,7 +48,6 @@ int main (int argc, char *argv[])
     nodosCriadosAVL = 0;
     nRotAVL = 0;
     comparacoesAVL = 0;
-
     do{
         printf("Insira  1  para AVL ou  2  para ARN: ");
         scanf("%d", &select);
@@ -78,8 +78,7 @@ int main (int argc, char *argv[])
         linha[strlen(linha)-1] = '\0';
         if(select == 1)
             buscaNodoAVL(raizAVL, linha, &saida);                          //Insere a palavra em AVL caso selecionada
-
-            rbPrintIds(arvoreRN, linha, &rbSearchComp, &saida);//Insere a palavra em ARN caso selecionada
+            rbPrintIds(arvoreRN, linha, &saida);            //Insere a palavra em ARN caso selecionada
     }
 
     if(select == 1){

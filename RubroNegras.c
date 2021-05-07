@@ -262,24 +262,24 @@ void rbPreEsq(rbt* tree)
     peRec(tree->root);
 }
 
-rbNode* findRecursive(rbNode* node, char *word, int *comps)
+rbNode* findRecursive(rbNode* node, char *word)
 {
     if (node == NULL)
         return NULL;
 
     int comp = strcmp(node->word, word);
-    *comps += 1;
+    rbSearchComp += 1;
     if (comp > 0)
-        return findRecursive(node->l, word, comps);
+        return findRecursive(node->l, word);
     else if (comp < 0)
-        return findRecursive(node->r, word, comps);
+        return findRecursive(node->r, word);
     else
         return node;
 }
 
-rbNode* rbFind(rbt* tree, char *word, int* comps)
+rbNode* rbFind(rbt* tree, char *word)
 {
-    return findRecursive(tree->root, word, comps);
+    return findRecursive(tree->root, word);
 }
 
 int rbHeightRec(rbNode* node)
@@ -304,9 +304,9 @@ int rbHeight(rbt* tree)
     return rbHeightRec(tree->root);
 }
 
-void rbPrintIds(rbt* tree, char *word, int *comps, FILE **saida)
+void rbPrintIds(rbt* tree, char *word, FILE **saida)
 {
-    rbNode *node = rbFind(tree, word, comps);
+    rbNode *node = rbFind(tree, word);
     if (node != NULL)
     {
         fprintf(*saida, "consulta: %s Palavra encontrada nos tweets ", word);
