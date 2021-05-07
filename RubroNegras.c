@@ -9,6 +9,7 @@ rbt* rbInitialize()
 {
     rbt *n = malloc(sizeof(rbt));
     n->root = NULL;
+    n->comps = 0;
     n->nodes = 0;
     n->rotations = 0;
     return n;
@@ -39,6 +40,8 @@ void rDireita(rbNode* node, rbt* tree)
 
     node->a = avo;//Ancestral do nó vai ser seu avô antigo
     node->r = p;//Filho direito no nó vai ser seu pai antigo
+    if (r != NULL)
+        r->a = p;//Ancestral do filho direito antigo do nó vai ser pai antigo do nó
 
     p->a = node;//Ancestral do pai antigo do nó vai ser o próprio nó
     p->l = r;//Filho esquerdo do pai antigo do nó vai ser filho antigo direito do nó
@@ -68,6 +71,8 @@ void rEsquerda(rbNode* node, rbt* tree)
 
     p->a = node;//Ancestral do pai antigo do nó vai ser o próprio nó
     p->r = l;//Filho direito do pai antigo do nó vai ser filho antigo esquerdo do nó
+    if (l != NULL)
+        l->a = p;//Ancestral do filho esquerdo antigo do nó vai ser pai antigo do nó
 
     node->a = avo;//Ancestral do nó vai ser seu avô antigo
     node->l = p;//Filho esquerdo no nó vai ser seu pai antigo
@@ -75,7 +80,6 @@ void rEsquerda(rbNode* node, rbt* tree)
 
 void rotacaoDireita(rbNode* node, rbt* tree)
 {
-    tree->rotations += 1;
     node->a->color = 0;
     node->a->a->color = 1;
     rDireita(node->a, tree);
@@ -83,7 +87,6 @@ void rotacaoDireita(rbNode* node, rbt* tree)
 
 void rotacaoEsquerda(rbNode* node, rbt* tree)
 {
-    tree->rotations += 1;
     node->a->color = 0;
     node->a->a->color = 1;
     rEsquerda(node->a, tree);
@@ -91,7 +94,6 @@ void rotacaoEsquerda(rbNode* node, rbt* tree)
 
 void rotacaoDuplaDireita(rbNode* node, rbt* tree)
 {
-    tree->rotations += 2;
     node->color = 0;
     node->a->a->color = 1;
     rEsquerda(node, tree);
@@ -100,7 +102,6 @@ void rotacaoDuplaDireita(rbNode* node, rbt* tree)
 
 void rotacaoDuplaEsquerda(rbNode* node, rbt* tree)
 {
-    tree->rotations += 2;
     node->color = 0;
     node->a->a->color = 1;
     rDireita(node, tree);
@@ -109,162 +110,211 @@ void rotacaoDuplaEsquerda(rbNode* node, rbt* tree)
 
 void arrumarArvore(rbNode* node, rbt* tree)
 {
-    if (node != NULL && node->a != NULL && node->a->a != NULL && node->color == 1 /*&& node->a->color == 1*/)
+    if (node != NULL && node->a != NULL && node->a->a != NULL)
     {
-        //////////////
-        //char pal[30];
-        //strcpy(pal, node->word);
-        //////////////
-        rbNode* pai = node->a;
-        rbNode* avo = pai->a;
-        if (pai->color == 1)//Caso 2, pai é vermelho
+        rbNode* p = node->a;//Pai do nó
+        rbNode* g = node->a->a;//Avô do nó
+
+        ////////////////////// DEBUG
+        /*
+        printf("node %s \n", node->word);
+        printf("pai %s cor %d \n", p->word, p->color);
+        printf("avo %s cor %d \n", g->word, g->color);
+        */
+        //////////////////////
+
+
+        if (node->a->color == 1 && node->color == 1)//Pai é vermelho
         {
-            if (avo->r != pai)//Pai é filho esquerdo do avô
+            if (g->r != p)//Pai é filho esquerdo
             {
-                if (avo->r != NULL)//Caso 2.1, tio é vermelho
+                if (g->r != NULL && g->r->color == 1)//Tio é vermelho
                 {
-                    pai->color = 0;
-                    avo->r->color = 0;
-                    if (avo->a != NULL)//Exceção raiz
-                        avo->color = 1;
+                    p->color = 0;
+                    g->r->color = 0;
+                    if (g->a != NULL)//Exceção se o avô for raiz
+                        g->color = 1;
                 }
-
-                else//Caso 2.2, pai é vermelho, tio é preto
+                else//Tio é preto
                 {
-                    if (pai->r != node)//Nó é filho esquerdo
+                    if (p->r != node)//Nó é filho esquerdo
                     {
+                        //printf("rotacao direita \n");////////////////// DEBUG
                         rotacaoDireita(node, tree);
-                    }
-                else//Nó é filho direito
-                    {
-                        rotacaoDuplaDireita(node, tree);
-                    }
-                }
-            }
-
-            else//Pai é filho direito do avô
-            {
-                if (avo->l != NULL)//Caso 2.1, tio é vermelho
-                {
-                    pai->color = 0;
-                    avo->l->color = 0;
-                    if (avo->a != NULL)//Exceção raiz
-                        avo->color = 1;
-                }
-
-                else//Caso 2.2, pai é vermelho, tio é preto
-                {
-                    if (pai->r != node)//Nó é filho esquerdo
-                    {
-                        rotacaoDuplaEsquerda(node, tree);
+                        tree->rotations += 1;
                     }
                     else//Nó é filho direito
                     {
+                        //printf("rotacao dupla direita \n");////////////////// DEBUG
+                        rotacaoDuplaDireita(node, tree);
+                        tree->rotations += 2;
+                    }
+                }
+            }
+            else//Pai é filho direito
+            {
+                if (g->l != NULL && g->l->color == 1)//Tio é vermelho
+                {
+                    //printf("muda cor \n");////////////////// DEBUG
+                    p->color = 0;
+                    g->l->color = 0;
+                    if (g->a != NULL)//Exceção se o avô for raiz
+                        g->color = 1;
+                }
+                else//Tio é preto
+                {
+                    if (p->r != node)//Nó é filho esquerdo
+                    {
+                        //printf("rotacao dupla esquerda \n");////////////////// DEBUG
+                        rotacaoDuplaEsquerda(node, tree);
+                        tree->rotations += 2;
+                    }
+                    else//Nó é filho direito
+                    {
+                        //printf("rotacao esquerda \n");////////////////// DEBUG
                         rotacaoEsquerda(node, tree);
+                        tree->rotations += 1;
                     }
                 }
             }
         }
-    }
-    if (node->a != NULL)
+        //preEsq(tree);
+        //printf("\n\n");
         arrumarArvore(node->a, tree);
+    }
+    /*else////////////////// DEBUG
+    {
+        preEsq(tree);
+        printf("\n\n");
+    }*/
 }
 
-rbNode* createNode()
+rbNode* createNode(char *word, int tweetId, rbNode* a)
 {
     rbNode* node = malloc(sizeof(rbNode));
     idTweets* ids;
     initIDL(&ids);
+    node->a = a;
+    node->word = strdup(word);
     node->color = 1;
     node->l = NULL;
     node->r = NULL;
     node->ids = ids;
+    node->ids = insereIDL(node->ids, tweetId);
     return node;
 }
 
-rbNode* rbInsert(rbNode* root, rbt* tree, rbNode* a, char *word, int tweetId, char d)
+rbNode* rbInsert(rbNode* node, rbt* tree, rbNode* a, char* word, int tweetId, char d, rbNode** start)
 {
-
-    if (root == NULL)
+    if (node == NULL)
     {
-        rbNode* node = createNode();
-        node->word = strdup(word);
-        node->ids = insereIDL(node->ids, tweetId);
-        node->a = a;
-        node->word = strdup(word);
+        rbNode* newNode = createNode(word, tweetId, a);
+        tree->nodes += 1;
         if (a == NULL)
-        {
-            tree->root = node;
-            node->color = 0;
-        }
-        else
-        {
-            if (d == 0)
-                a->l = node;
-            else
-                a->r = node;
-        }
-        return node;
-    }
-
-    if (strcmp(root->word, word) > 0)
-    {
-        return rbInsert(root->l, tree, root, word, tweetId, 0);
-    }
-    else if(strcmp(root->word, word) < 0)
-    {
-        return rbInsert(root->r, tree, root, word, tweetId, 1);
+            newNode->color = 0;
+        *start = newNode;
+        //printf("%s \n", word);
+        return newNode;
     }
     else
     {
-        root->ids = insereIDL(root->ids, tweetId);
-        return NULL;
+        int cmp = strcmp(node->word, word);
+        tree->comps += 1;
+        if (cmp > 0)
+        {
+            node->l = rbInsert(node->l, tree, node, word, tweetId, 0, start);
+        }
+        else if (cmp < 0)
+        {
+            node->r = rbInsert(node->r, tree, node, word, tweetId, 0, start);
+        }
+        else
+        {
+            insereIDL(node->ids, tweetId);
+        }
+        return node;
     }
 }
 
 void rbInserir(rbt* tree, char *word, int tweetId)
 {
-    rbNode* start = rbInsert(tree->root, tree, NULL, word, tweetId, 0);
+    rbNode* start = NULL;
+    tree->root = rbInsert(tree->root, tree, NULL, word, tweetId, 0, &start);
     if (start != NULL)
-    {
         arrumarArvore(start, tree);
-        tree->nodes += 1;
-    }
 }
 
 void peRec(rbNode* node)
 {
     if (node == NULL)
         return;
-    printf("%s \n", node->word);
+    printf("%s / %d", node->word, node->color);
+    if (node->a != NULL)
+        printf(" / %s", node->a->word);
+    printf("\n");
     peRec(node->l);
     peRec(node->r);
     return;
 }
 
-void preEsq(rbt* tree)
+void rbPreEsq(rbt* tree)
 {
     peRec(tree->root);
 }
 
-rbNode* findRecursive(rbNode* node, char *word)
+rbNode* findRecursive(rbNode* node, char *word, int *comps)
 {
+    if (node == NULL)
+        return NULL;
+
     int comp = strcmp(node->word, word);
+    *comps += 1;
     if (comp > 0)
-        return findRecursive(node->l, word);
+        return findRecursive(node->l, word, comps);
     else if (comp < 0)
-        return findRecursive(node->r, word);
+        return findRecursive(node->r, word, comps);
     else
         return node;
 }
 
-rbNode* rbFind(rbt* tree, char *word)
+rbNode* rbFind(rbt* tree, char *word, int* comps)
 {
-    rbNode* node = findRecursive(tree->root, word);
+    return findRecursive(tree->root, word, comps);
+}
+
+int rbHeightRec(rbNode* node)
+{
+    if (node == NULL)
+        return 0;
+    else
+    {
+        int lH, rH;
+        lH = rbHeightRec(node->l);
+        rH = rbHeightRec(node->r);
+
+        if (lH > rH)
+            return lH + 1;
+        else
+            return rH + 1;
+    }
+}
+
+int rbHeight(rbt* tree)
+{
+    return rbHeightRec(tree->root);
+}
+
+void rbPrintIds(rbt* tree, char *word, int *comps, FILE **saida)
+{
+    rbNode *node = rbFind(tree, word, comps);
     if (node != NULL)
     {
-        printf("%s : ", node->word);
-        imprimeIDL(node->ids, stdout);
+        fprintf(*saida, "consulta: %s Palavra encontrada nos tweets ", word);
+        imprimeIDL(node->ids, saida);
+        fprintf(*saida, "\n");
     }
-    return node;
+    else
+    {
+        fprintf(*saida, "consulta: %s Palavra não encontrada\n", word);
+    }
 }
