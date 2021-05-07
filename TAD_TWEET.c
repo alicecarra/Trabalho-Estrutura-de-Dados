@@ -30,7 +30,6 @@ void imprimeIDL(idTweets* lista, FILE **saida)
 idTweets* insereIDL(idTweets* lista, int id)
 {
     idTweets* aux;
-    //printf("%d  --> ", id);
 	idTweets *novo = (idTweets*) malloc(sizeof(idTweets));
 
     novo->id = id;
@@ -48,9 +47,6 @@ idTweets* insereIDL(idTweets* lista, int id)
         aux->prox           = novo;
 	}
 
-    //printf("%d | %d | %d\n", novo->ant->id, novo->id, novo->prox->id);
-
     return novo;
-
 }
 
