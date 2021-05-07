@@ -82,6 +82,7 @@ int main (int argc, char *argv[])
             rbPrintIds(arvoreRN, linha, &saida);                            //Insere a palavra em ARN caso selecionada
     }
 
+
     if(select == 1){
         fprintf(saida, "\n********** Estatísticas da Indexação AVL ***********\n");
         fprintf(saida, "Nodos = %d\n", nodosCriadosAVL);
@@ -97,6 +98,8 @@ int main (int argc, char *argv[])
         fprintf(saida, "Comparações = %d\n", arvoreRN->comps);
         fprintf(saida, "Rotações = %d\n", arvoreRN->rotations);
         fprintf(saida, "Altura da árvore = %d\n", rbHeight(arvoreRN));
+        fprintf(saida, "////////////////////////////////\n");
+        fprintf(saida, "Comparações de pesquisa: %d", rbSearchComp);
      }
 
 
