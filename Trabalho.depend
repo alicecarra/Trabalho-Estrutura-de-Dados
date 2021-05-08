@@ -60,22 +60,23 @@
 	<stdlib.h>
 	<string.h>
 
-1620321410 source:c:\users\victf\documents\github\trabalho-estrutura-de-dados\tad_tweet.c
+1620507892 source:c:\users\victf\documents\github\trabalho-estrutura-de-dados\tad_tweet.c
 	"TAD_TWEET.h"
 
-1620396755 source:c:\users\victf\documents\github\trabalho-estrutura-de-dados\main.c
+1620513052 source:c:\users\victf\documents\github\trabalho-estrutura-de-dados\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<locale.h>
+	<time.h>
 	"TAD_AVL.h"
 	"TAD_TWEET.h"
 	"RubroNegras.h"
 
-1620361858 c:\users\victf\documents\github\trabalho-estrutura-de-dados\rubronegras.h
+1620505461 c:\users\victf\documents\github\trabalho-estrutura-de-dados\rubronegras.h
 	"TAD_TWEET.h"
 
-1620397808 source:c:\users\victf\documents\github\trabalho-estrutura-de-dados\rubronegras.c
+1620507978 source:c:\users\victf\documents\github\trabalho-estrutura-de-dados\rubronegras.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

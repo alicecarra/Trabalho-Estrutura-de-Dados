@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
+#include <time.h>
 #include "TAD_AVL.h"
 #include "TAD_TWEET.h"
 #include "RubroNegras.h"
@@ -15,6 +16,8 @@ int main (int argc, char *argv[])
     char    *palavra, linha[300], *id;                                      // linhas a serem lidas do arquivo
     char    separador[] = {" 0123456789,.&*%\?!;/-'@\"$#=~><()][}{:\n\t_"}; //caracteres separadores para as palavras
     int     id_num, select;
+    clock_t start;
+    double timeIn, timeOut;
     avlNodo *raizAVL;
     rbt* arvoreRN = rbInitialize();
     rbSearchComp = 0;
@@ -57,6 +60,7 @@ int main (int argc, char *argv[])
     select = atoi(argv[4]);
 
     // Lendo arquivo de entrada e montando árvores
+    start = clock();
     while (fgets(linha, 1000, base))                                    //lê cada linha da base de dados
     {
         id = strtok (linha, ";");                                       //pega o id do tweet
@@ -75,7 +79,10 @@ int main (int argc, char *argv[])
         }
     }
 
+    timeIn = (double)(clock() - start) / CLOCKS_PER_SEC;//Calcula o tempo de inserção
+
     comparacoesBuscaAVL = 0;
+    start = clock();
     while (fgets(linha, 1000, entrada))                                    //lê cada linha da base de dados
     {
         linha[strlen(linha)-1] = '\0';
@@ -84,7 +91,7 @@ int main (int argc, char *argv[])
         else
             rbPrintIds(arvoreRN, linha, &saida);                            //Insere a palavra em ARN caso selecionada
     }
-
+    timeOut = (double)(clock() - start) / CLOCKS_PER_SEC;//Calcula o tempo de busca
 
     if(select == 1){
         fprintf(saida, "\n********** Estatísticas da Indexação AVL ***********\n");
@@ -92,8 +99,10 @@ int main (int argc, char *argv[])
         fprintf(saida, "Comparações = %d\n", comparacoesAVL);      // TODO
         fprintf(saida, "Rotações = %d\n", nRotAVL);
         fprintf(saida, "Altura da árvore = %d\n", raizAVL->altura);
+        fprintf(saida, "Tempo de inserção = %0.4f segundos\n", timeIn);
         fprintf(saida, "\n********** Estatísticas da Busca em AVL ***********\n");
         fprintf(saida, "Comparações = %d\n", comparacoesBuscaAVL);
+        fprintf(saida, "Tempo de busca = %0.4f segundos\n", timeOut);
         }
         else{
         fprintf(saida, "\n********** Estatísticas da Indexação ARN ***********\n");
@@ -101,8 +110,10 @@ int main (int argc, char *argv[])
         fprintf(saida, "Comparações = %d\n", arvoreRN->comps);
         fprintf(saida, "Rotações = %d\n", arvoreRN->rotations);
         fprintf(saida, "Altura da árvore = %d\n", rbHeight(arvoreRN));
-        fprintf(saida, "////////////////////////////////\n");
-        fprintf(saida, "Comparações de pesquisa: %d", rbSearchComp);
+        fprintf(saida, "Tempo de inserção = %0.4f segundos\n", timeIn);
+        fprintf(saida, "\n********** Estatísticas da Busca em ARN ***********\n");
+        fprintf(saida, "Comparações de pesquisa: %d\n", rbSearchComp);
+        fprintf(saida, "Tempo de busca = %0.4f segundos\n", timeOut);
      }
 
 
