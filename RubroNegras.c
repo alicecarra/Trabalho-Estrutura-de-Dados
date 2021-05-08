@@ -24,18 +24,18 @@ void rDireita(rbNode* node, rbt* tree)
     if (p->a != NULL)//Pai não é raiz
     {
         avo = p->a;
-        if (avo->r == p)//Pai é filho esquerdo
+        if (avo->r == p)//Pai é filho direito
         {
-            avo->r = node;
+            avo->r = node;//Atribuir nó ao filho direito do avô
         }
-        else//Pai é filho direito
+        else//Pai é filho esquerdo
         {
-            avo->l = node;
+            avo->l = node;//Atribuir nó ao filho esquerdo do avô
         }
     }
     else
     {
-        tree->root = node;
+        tree->root = node;//Se nó é nova raiz, atribuir na árvore
     }
 
     node->a = avo;//Ancestral do nó vai ser seu avô antigo
@@ -57,16 +57,16 @@ void rEsquerda(rbNode* node, rbt* tree)
         avo = p->a;
         if (avo->r == p)//Pai é filho direito
         {
-            avo->r = node;
+            avo->r = node;//Atribuir nó ao filho direito do avô
         }
         else//Pai é filho esquerdo
         {
-            avo->l = node;
+            avo->l = node;//Atribuir nó ao filho esquerdo do avô
         }
     }
     else
     {
-        tree->root = node;
+        tree->root = node;//Se nó é nova raiz, atribuir na árvore
     }
 
     p->a = node;//Ancestral do pai antigo do nó vai ser o próprio nó
@@ -80,37 +80,37 @@ void rEsquerda(rbNode* node, rbt* tree)
 
 void rotacaoDireita(rbNode* node, rbt* tree)
 {
-    node->a->color = 0;
-    node->a->a->color = 1;
-    rDireita(node->a, tree);
+    node->a->color = 0;//Muda a cor do pai
+    node->a->a->color = 1;//Muda a cor do avô
+    rDireita(node->a, tree);//Rotação à direita
 }
 
 void rotacaoEsquerda(rbNode* node, rbt* tree)
 {
-    node->a->color = 0;
-    node->a->a->color = 1;
-    rEsquerda(node->a, tree);
+    node->a->color = 0;//Muda a cor do pai
+    node->a->a->color = 1;//Muda a cor do avô
+    rEsquerda(node->a, tree);//Rotação à esquerda
 }
 
 void rotacaoDuplaDireita(rbNode* node, rbt* tree)
 {
-    node->color = 0;
-    node->a->a->color = 1;
-    rEsquerda(node, tree);
-    rDireita(node, tree);
+    node->color = 0;//Muda a cor do nó
+    node->a->a->color = 1;//Muda a cor do avô
+    rEsquerda(node, tree);//Rotação à esquerda
+    rDireita(node, tree);//Rotação à direita
 }
 
 void rotacaoDuplaEsquerda(rbNode* node, rbt* tree)
 {
-    node->color = 0;
-    node->a->a->color = 1;
-    rDireita(node, tree);
-    rEsquerda(node, tree);
+    node->color = 0;//Muda a cor do nó
+    node->a->a->color = 1;//Muda a cor do avô
+    rDireita(node, tree);//Rotação à direita
+    rEsquerda(node, tree);//Rotação à esquerda
 }
 
 void arrumarArvore(rbNode* node, rbt* tree)
 {
-    if (node != NULL && node->a != NULL && node->a->a != NULL)
+    if (node != NULL && node->a != NULL && node->a->a != NULL)//Se nó, pai do nó e avô do nó não são nulos
     {
         rbNode* p = node->a;//Pai do nó
         rbNode* g = node->a->a;//Avô do nó
@@ -130,24 +130,24 @@ void arrumarArvore(rbNode* node, rbt* tree)
             {
                 if (g->r != NULL && g->r->color == 1)//Tio é vermelho
                 {
-                    p->color = 0;
-                    g->r->color = 0;
+                    p->color = 0;//Mudar cor do pai
+                    g->r->color = 0;//Mudar cor do tio
                     if (g->a != NULL)//Exceção se o avô for raiz
-                        g->color = 1;
+                        g->color = 1;//Mudar cor do avô
                 }
                 else//Tio é preto
                 {
                     if (p->r != node)//Nó é filho esquerdo
                     {
                         //printf("rotacao direita \n");////////////////// DEBUG
-                        rotacaoDireita(node, tree);
-                        tree->rotations += 1;
+                        rotacaoDireita(node, tree);//Realizar rotação à direita
+                        tree->rotations += 1;//Incrementar contador de rotações
                     }
                     else//Nó é filho direito
                     {
                         //printf("rotacao dupla direita \n");////////////////// DEBUG
-                        rotacaoDuplaDireita(node, tree);
-                        tree->rotations += 2;
+                        rotacaoDuplaDireita(node, tree);//Realizar rotação dupla à direita
+                        tree->rotations += 2;//Incrementar contador de rotações em 2
                     }
                 }
             }
@@ -156,24 +156,24 @@ void arrumarArvore(rbNode* node, rbt* tree)
                 if (g->l != NULL && g->l->color == 1)//Tio é vermelho
                 {
                     //printf("muda cor \n");////////////////// DEBUG
-                    p->color = 0;
-                    g->l->color = 0;
+                    p->color = 0;//Mudar cor do pai
+                    g->l->color = 0;//Mudar cor do tio
                     if (g->a != NULL)//Exceção se o avô for raiz
-                        g->color = 1;
+                        g->color = 1;//Mudar cor do avô
                 }
                 else//Tio é preto
                 {
                     if (p->r != node)//Nó é filho esquerdo
                     {
                         //printf("rotacao dupla esquerda \n");////////////////// DEBUG
-                        rotacaoDuplaEsquerda(node, tree);
-                        tree->rotations += 2;
+                        rotacaoDuplaEsquerda(node, tree);//Realizar rotação dupla à esquerda
+                        tree->rotations += 2;//Incrementar contador de rotações em 2
                     }
                     else//Nó é filho direito
                     {
                         //printf("rotacao esquerda \n");////////////////// DEBUG
-                        rotacaoEsquerda(node, tree);
-                        tree->rotations += 1;
+                        rotacaoEsquerda(node, tree);//Realizar rotação à esquerda
+                        tree->rotations += 1;//Incrementar contador de rotações
                     }
                 }
             }
@@ -191,49 +191,48 @@ void arrumarArvore(rbNode* node, rbt* tree)
 
 rbNode* createNode(char *word, int tweetId, rbNode* a)
 {
-    rbNode* node = malloc(sizeof(rbNode));
-    idTweets* ids;
-    initIDL(&ids);
-    node->a = a;
-    node->word = strdup(word);
-    node->color = 1;
+    rbNode* node = malloc(sizeof(rbNode));//Alocar espaço para o nó
+    idTweets* ids;//Criar lista de ids para mandar para o nó
+    initIDL(&ids);//Inicializar lista de ids
+    node->a = a;//Atribuir ancestral
+    node->word = strdup(word);//Duplicar palavra para o nó
+    node->color = 1;//Cor do nó é vermelho inicialmente
     node->l = NULL;
-    node->r = NULL;
-    node->ids = ids;
-    node->ids = insereIDL(node->ids, tweetId);
-    return node;
+    node->r = NULL;//Atribuir nulo aos filhos
+    node->ids = ids;//Atribuir lista nova à lista do nó
+    node->ids = insereIDL(node->ids, tweetId);//Inserir id do tweet na lista do nó
+    return node;//Retornar o nó
 }
 
 rbNode* rbInsert(rbNode* node, rbt* tree, rbNode* a, char* word, int tweetId, char d, rbNode** start)
 {
-    if (node == NULL)
+    if (node == NULL)//Se é folha
     {
-        rbNode* newNode = createNode(word, tweetId, a);
-        tree->nodes += 1;
-        if (a == NULL)
+        rbNode* newNode = createNode(word, tweetId, a);//Criar nó novo
+        tree->nodes += 1;//Incrementar o contador de nós da árvore
+        if (a == NULL)//Se nó for o primeiro a ser inserido, cor é preta
             newNode->color = 0;
-        *start = newNode;
-        //printf("%s \n", word);
-        return newNode;
+        *start = newNode;//Manda o endereço do nó para fazer o reajuste da árvore
+        return newNode;//Retorna o nó novo
     }
-    else
+    else//Se nó não é folha
     {
-        int cmp = strcmp(node->word, word);
-        tree->comps += 1;
-        if (cmp > 0)
+        int cmp = strcmp(node->word, word);//Compara a palavra do nó atual com a palavra a ser inserida
+        tree->comps += 1;//Incrementa o contador de comparações
+        if (cmp > 0)//Se a palavra vem antes do nó atual em ordem alfabética, ir para a esquerda
         {
-            node->l = rbInsert(node->l, tree, node, word, tweetId, 0, start);
+            node->l = rbInsert(node->l, tree, node, word, tweetId, 0, start);//Se existe um nó à esquerda, ele continua no mesmo lugar, se não existe nó à esquerda, novo nó tomo lugar vazio.
         }
-        else if (cmp < 0)
+        else if (cmp < 0)//Se a palavra vem depois do nó atual em ordem alfabética, ir para a direita
         {
-            node->r = rbInsert(node->r, tree, node, word, tweetId, 0, start);
+            node->r = rbInsert(node->r, tree, node, word, tweetId, 0, start);//Se existe um nó à direita, ele continua no mesmo lugar, se não existe nó à direita, novo nó tomo lugar vazio.
         }
-        else
+        else//Se palavras são iguais
         {
-            if (node->ids->id != tweetId)
+            if (node->ids->id != tweetId)//adiciona tweetId à lista de ids apenas se está em tweet diferente do último adicionado
                 node->ids = insereIDL(node->ids, tweetId);
         }
-        return node;
+        return node;//Retorna o nó para manter order da árvore
     }
 }
 

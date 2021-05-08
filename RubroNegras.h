@@ -6,12 +6,12 @@ int rbSearchComp;
 
 typedef struct _rbNode//Struct dos nós da rubro-negra
 {
-    char* word;
-    idTweets* ids;
-    char color;
-    struct _rbNode* a;
-    struct _rbNode* r;
-    struct _rbNode* l;
+    char* word;//Palavra que o nó representa
+    idTweets* ids;//IDs dos tweets que contém a palavra
+    char color;//Cor do nó
+    struct _rbNode* a;//Ancestral do nó
+    struct _rbNode* r;//Filho direito do nó
+    struct _rbNode* l;//Filho esquerdo do nó
 } rbNode;
 
 typedef struct _rbt//Struct da árvore rubro-negra
