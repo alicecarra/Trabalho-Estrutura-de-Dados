@@ -19,25 +19,25 @@ int main (int argc, char *argv[])
     rbt* arvoreRN = rbInitialize();
     rbSearchComp = 0;
 
-    /*if (argc!=4)                                                       //testa se o numero de parametros esperado está correto
+    if (argc!=5)                                                       //testa se o numero de parametros esperado está correto
     {
         printf ("Número incorreto de parametros.\n Para chamar o programa digite: %s <aqrq_base> <arq_entrada> <arq_saida>\n",argv[0]);
         return 1;
-    }*/
+    }
 
     // Checagem e abertura de arquivos
-    if ((base = fopen("c:/base_completa.csv", "r")) == NULL)                             // testa se consegue abrir o arquivo de entrada
+    if ((base = fopen(argv[1], "r")) == NULL)                             // testa se consegue abrir o arquivo de entrada
     {
         printf("erro ao abrir arquivo base %s \n", argv[1]);
         return 1;
     }
-    if ((entrada = fopen("consulta.txt", "r")) == NULL)                           // testa se consegue abrir o arquivo de entrada
+    if ((entrada = fopen(argv[2], "r")) == NULL)                           // testa se consegue abrir o arquivo de entrada
     {
         printf("erro ao abrir arquivo de entrada %s \n", argv[2]);
         return 1;
     }
 
-    if ((saida=fopen("saida.txt", "w") )== NULL)                              // testa se consegue criar o arquivo de sa�da
+    if ((saida=fopen(argv[3], "w") )== NULL)                              // testa se consegue criar o arquivo de sa�da
     {
         printf("erro ao criar arquivo de saida %s \n", argv[3]);
         return 1;
@@ -48,10 +48,13 @@ int main (int argc, char *argv[])
     nodosCriadosAVL = 0;
     nRotAVL = 0;
     comparacoesAVL = 0;
+    /*
     do{
         printf("Insira  1  para AVL ou  2  para ARN: ");
         scanf("%d", &select);
     }while(select != 1 && select != 2);
+    */
+    select = atoi(argv[4]);
 
     // Lendo arquivo de entrada e montando árvores
     while (fgets(linha, 1000, base))                                    //lê cada linha da base de dados
