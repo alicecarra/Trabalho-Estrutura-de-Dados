@@ -204,7 +204,7 @@ rbNode* createNode(char *word, int tweetId, rbNode* a)
     return node;//Retornar o nó
 }
 
-rbNode* rbInsert(rbNode* node, rbt* tree, rbNode* a, char* word, int tweetId, char d, rbNode** start)
+rbNode* rbInsert(rbNode* node, rbt* tree, rbNode* a, char* word, int tweetId, rbNode** start)
 {
     if (node == NULL)//Se é folha
     {
@@ -221,11 +221,11 @@ rbNode* rbInsert(rbNode* node, rbt* tree, rbNode* a, char* word, int tweetId, ch
         tree->comps += 1;//Incrementa o contador de comparações
         if (cmp > 0)//Se a palavra vem antes do nó atual em ordem alfabética, ir para a esquerda
         {
-            node->l = rbInsert(node->l, tree, node, word, tweetId, 0, start);//Se existe um nó à esquerda, ele continua no mesmo lugar, se não existe nó à esquerda, novo nó tomo lugar vazio.
+            node->l = rbInsert(node->l, tree, node, word, tweetId, start);//Se existe um nó à esquerda, ele continua no mesmo lugar, se não existe nó à esquerda, novo nó tomo lugar vazio.
         }
         else if (cmp < 0)//Se a palavra vem depois do nó atual em ordem alfabética, ir para a direita
         {
-            node->r = rbInsert(node->r, tree, node, word, tweetId, 0, start);//Se existe um nó à direita, ele continua no mesmo lugar, se não existe nó à direita, novo nó tomo lugar vazio.
+            node->r = rbInsert(node->r, tree, node, word, tweetId, start);//Se existe um nó à direita, ele continua no mesmo lugar, se não existe nó à direita, novo nó tomo lugar vazio.
         }
         else//Se palavras são iguais
         {
@@ -239,7 +239,7 @@ rbNode* rbInsert(rbNode* node, rbt* tree, rbNode* a, char* word, int tweetId, ch
 void rbInserir(rbt* tree, char *word, int tweetId)
 {
     rbNode* start = NULL;
-    tree->root = rbInsert(tree->root, tree, NULL, word, tweetId, 0, &start);
+    tree->root = rbInsert(tree->root, tree, NULL, word, tweetId, &start);
     if (start != NULL)
         arrumarArvore(start, tree);
 }
