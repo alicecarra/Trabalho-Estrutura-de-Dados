@@ -4,41 +4,47 @@
 	<ActiveTarget name="Debug" />
 	<File name="RubroNegras.c" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="8911" topLine="3" />
+			<Cursor1 position="8911" topLine="285" />
 		</Cursor>
-	</File>
-	<File name="main.c" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3417" topLine="57" />
-		</Cursor>
-	</File>
-	<File name="TAD_AVL.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="456" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="TAD_AVL.c" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="684" topLine="99" />
-		</Cursor>
-		<Folding>
-			<Collapse line="3" />
-			<Collapse line="121" />
-		</Folding>
 	</File>
 	<File name="TAD_TWEET.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="478" topLine="0" />
+			<Cursor1 position="793" topLine="12" />
+		</Cursor>
+		<Folding>
+			<Collapse line="3" />
+			<Collapse line="10" />
+			<Collapse line="15" />
+		</Folding>
+	</File>
+	<File name="main.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4835" topLine="92" />
 		</Cursor>
 	</File>
 	<File name="RubroNegras.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="273" topLine="0" />
+			<Cursor1 position="603" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="TAD_TWEET.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="199" topLine="0" />
+			<Cursor1 position="407" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="TAD_AVL.c" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3303" topLine="100" />
+		</Cursor>
+		<Folding>
+			<Collapse line="3" />
+			<Collapse line="121" />
+			<Collapse line="164" />
+		</Folding>
+	</File>
+	<File name="TAD_AVL.h" open="1" top="1" tabpos="6" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="203" topLine="4" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

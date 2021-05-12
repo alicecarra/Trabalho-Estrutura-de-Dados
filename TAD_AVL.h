@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include "TAD_TWEET.h"
 
+// Struct dos nodos da AVL
 typedef struct AVL_Nodo{
     char*               palavra;
     idTweets*           idl;
@@ -13,22 +14,22 @@ typedef struct AVL_Nodo{
     int                 altura;
 }avlNodo;
 
+// Contadores para estatisticas
 int         nodosCriadosAVL;
 int         nRotAVL;
 int         comparacoesAVL;
 int         compara;
 int         comparacoesBuscaAVL;
 
-void        initAVL(avlNodo**);
-avlNodo*    initNodoAVL(char* palavra, int id);
-void        buscaNodoAVL(avlNodo *a, char* palavra, FILE **saida);
-avlNodo*    insereNodoAVL(avlNodo* a, char* palavra, int id);
-int         alturaNodoAVL(avlNodo *a);
-int         fatorNodoAVL(avlNodo *a);
-void        imprimeAVL(avlNodo* a, int nivel);
-avlNodo*    rotDirAVL(avlNodo *nodo);
-avlNodo*    rotEsqAVL(avlNodo *nodo);
 
-//void impremeArvore(Nodo* a, int nivel);
+void        initAVL(avlNodo**);                                     //Inicia a AVL
+avlNodo*    initNodoAVL(char* palavra, int id);                     //Aloca um novo nodo
+void        buscaNodoAVL(avlNodo *a, char* palavra, FILE **saida);  //Busca por um nodo
+avlNodo*    insereNodoAVL(avlNodo* a, char* palavra, int id);       //Insere um novo nodo
+int         alturaNodoAVL(avlNodo *a);                              //Calcula a altura do nodo
+int         fatorNodoAVL(avlNodo *a);                               //Calcula o fator do nodo
+void        imprimeAVL(avlNodo* a, int nivel);                      //Imprime a  árvore
+avlNodo*    rotDirAVL(avlNodo *nodo);                               //Rotação DIREITA
+avlNodo*    rotEsqAVL(avlNodo *nodo);                               //Rotação ESQUERDA
 
 #endif // TAD_AVL_H_INCLUDED
