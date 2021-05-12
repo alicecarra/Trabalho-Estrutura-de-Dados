@@ -45,18 +45,18 @@ int main (int argc, char *argv[])
         printf("erro ao criar arquivo de saida %s \n", argv[3]);
         return 1;
     }
+    if(*argv[4] != '1' && *argv[4] != '2')
+    {
+        printf("o ultimo argumento deve ser 1 para AVL ou 2 para ARN\n");
+        return 1;
+    }
 
     // Criação da AVL
     initAVL(&raizAVL);                              // Inicialização da árvore AVL
     nodosCriadosAVL = 0;
     nRotAVL = 0;
     comparacoesAVL = 0;
-    /*
-    do{
-        printf("Insira  1  para AVL ou  2  para ARN: ");
-        scanf("%d", &select);
-    }while(select != 1 && select != 2);
-    */
+
     select = atoi(argv[4]);
 
     // Lendo arquivo de entrada e montando árvores

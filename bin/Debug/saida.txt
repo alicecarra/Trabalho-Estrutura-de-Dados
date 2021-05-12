@@ -999,13 +999,13 @@ consulta: velha Palavra encontrada nos tweets 1350, 1718, 4706, 5420, 6607, 7234
 consulta: vitima Palavra encontrada nos tweets 748, 2099, 3057, 3881, 4082, 4191, 6720, 7310, 7785, 7847, 
 consulta: zap Palavra encontrada nos tweets 3359, 4122, 5199, 5235, 6249, 6609, 6892, 7587, 7645, 9749, 
 
-********** Estatísticas da Indexação AVL ***********
+********** Estatísticas da Indexação ARN ***********
 Nodos = 16080
-Comparações = 2279381
-Rotações = 11522
+Comparações = 2251521
+Rotações = 9658
 Altura da árvore = 17
-Tempo de inserção = 0,1790 segundos
+Tempo de inserção = 0,2650 segundos
 
-********** Estatísticas da Busca em AVL ***********
-Comparações = 12823
-Tempo de busca = 0,0030 segundos
+********** Estatísticas da Busca em ARN ***********
+Comparações de pesquisa: 12820
+Tempo de busca = 0,0050 segundos

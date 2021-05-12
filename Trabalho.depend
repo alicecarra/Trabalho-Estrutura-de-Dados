@@ -129,3 +129,29 @@
 1620833385 source:c:\users\vinic\documents\faculdade\estrutura de dados\trabalho-estrutura-de-dados-main\tad_tweet.c
 	"TAD_TWEET.h"
 
+1620830989 source:c:\users\vinic\documents\faculdade\estrutura de dados\trabalho-estrutura-de-dados\rubronegras.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"RubroNegras.h"
+	"TAD_TWEET.h"
+
+1620833385 c:\users\vinic\documents\faculdade\estrutura de dados\trabalho-estrutura-de-dados\rubronegras.h
+	"TAD_TWEET.h"
+
+1620833385 c:\users\vinic\documents\faculdade\estrutura de dados\trabalho-estrutura-de-dados\tad_tweet.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1620833385 source:c:\users\vinic\documents\faculdade\estrutura de dados\trabalho-estrutura-de-dados\tad_avl.c
+	"TAD_AVL.h"
+
+1620833394 c:\users\vinic\documents\faculdade\estrutura de dados\trabalho-estrutura-de-dados\tad_avl.h
+	<stdio.h>
+	<stdlib.h>
+	"TAD_TWEET.h"
+
+1620833385 source:c:\users\vinic\documents\faculdade\estrutura de dados\trabalho-estrutura-de-dados\tad_tweet.c
+	"TAD_TWEET.h"
+
